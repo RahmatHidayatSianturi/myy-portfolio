@@ -1,0 +1,265 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Poppins', sans-serif;
+}
+
+html {
+  font-size: 62.5%;
+  scroll-behavior: smooth;
+}
+
+body {
+  width: 100%;
+  min-height: 100vh;
+  background-color: black;
+  color: white;
+  overflow-x: hidden;
+}
+
+/* === NAVBAR === */
+header {
+  margin-top: 20px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  padding: 1rem 9%;
+  background-color: transparent;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+}
+
+header,
+a {
+  text-decoration: none;
+}
+
+.logo {
+  font-size: 3rem;
+  color: #b74b4b;
+  font-weight: 800;
+  cursor: pointer;
+  transition: 0.5s ease;
+}
+
+.logo:hover {
+  transform: scale(1.1);
+}
+
+nav a {
+  font-size: 1.8rem;
+  color: white;
+  margin-left: 4rem;
+  font-weight: 500;
+  transition: 0.3s ease;
+  border-bottom: 3px solid transparent;
+  text-decoration: none;
+}
+
+nav a:hover,
+nav a.active {
+  color: #b74b4b;
+  border-bottom: 3px solid #b74b4b;
+}
+
+/* === SECTION === */
+section.classes {
+  padding: 12rem 9% 5rem;
+  background-color: black;
+  text-align: center;
+}
+
+.heading {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.heading span {
+  color: #b74b4b;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  color: #ccc;
+  margin-bottom: 4rem;
+}
+
+/* === TABLE STYLING === */
+.table-container {
+  overflow-x: auto;
+  margin-top: 2rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #111;
+  color: white;
+  border-radius: 1rem;
+  overflow: hidden;
+  box-shadow: 0 0 20px rgba(183, 75, 75, 0.2);
+}
+
+thead {
+  background-color: #b74b4b;
+}
+
+thead th {
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1.2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05rem;
+  color: black;
+}
+
+tbody td {
+  font-size: 1.5rem;
+  padding: 1.2rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tbody tr:nth-child(even) {
+  background-color: #1a1a1a;
+}
+
+tbody tr:hover {
+  background-color: rgba(183, 75, 75, 0.2);
+  transition: 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  thead {
+    display: none;
+  }
+
+  table,
+  tbody,
+  tr,
+  td {
+    display: block;
+    width: 100%;
+  }
+
+  tr {
+    margin-bottom: 2rem;
+    background-color: #111;
+    border-radius: 1rem;
+    padding: 1.5rem;
+  }
+
+  td {
+    font-size: 1.4rem;
+    text-align: left;
+    padding: 0.8rem 1rem;
+    border: none;
+  }
+
+  td::before {
+    content: attr(data-label);
+    display: block;
+    font-weight: 600;
+    color: #b74b4b;
+  }
+
+  /* === TABLE STYLING ADDITIONS === */
+  /* Styling untuk sel yang berisi Nama Matkul dan Dosen */
+  .matkul-col {
+    text-align: left;
+    line-height: 1.4;
+  }
+
+  .matkul-col .matkul-name {
+    display: block;
+    font-weight: 600;
+    margin-bottom: 0.2rem;
+    color: #fff;
+  }
+
+  .matkul-col .dosen-name {
+    display: block;
+    font-size: 1.3rem;
+    color: #b74b4b; /* Warna merah untuk nama Dosen */
+    font-style: italic;
+  }
+
+  /* Menyembunyikan baris kosong yang dibuat untuk rowspan (Hanya untuk desktop) */
+  .hidden-row {
+    display: none;
+  }
+
+  /* Styling untuk Total SKS */
+  .total-sks-label {
+    font-weight: 700;
+    text-align: right !important;
+    color: #b74b4b;
+    font-size: 1.6rem !important;
+  }
+
+  .total-sks-value {
+    font-weight: 700;
+    font-size: 1.6rem !important;
+  }
+
+  /* Border styling untuk sel yang digabungkan (opsional, untuk tampilan lebih bersih) */
+  tbody tr td:first-child {
+    border-left: none;
+  }
+
+  tbody tr td:last-child {
+    border-right: none;
+  }
+
+  /* === MEDIA QUERY ADJUSTMENTS (PENTING untuk ROWSPAN) === */
+  @media (max-width: 768px) {
+    /* Hapus semua styling yang dibuat untuk rowspan di mobile */
+    .hidden-row {
+      display: none !important;
+    }
+
+    /* Reset rowspan cells */
+    .no-col,
+    .matkul-col {
+      display: block !important;
+      width: 100% !important;
+      text-align: left !important;
+    }
+
+    /* Tampilkan label data yang hilang di mobile */
+    .no-col::before {
+      content: 'No' !important;
+    }
+    .matkul-col::before {
+      content: 'Mata Kuliah' !important;
+    }
+
+    /* Hilangkan Dosen di baris terpisah karena akan ditampilkan bersama Matkul */
+    .matkul-col .dosen-name {
+      margin-top: 0.5rem;
+      font-size: 1.4rem;
+    }
+
+    /* Koreksi label untuk baris data */
+    /* Anda perlu menambahkan atribut data-label di HTML untuk setiap sel */
+    /* Karena modifikasi HTML terlalu banyak, saya hanya menyertakan koreksi umum */
+
+    /* Tampilan SKS */
+    .total-sks-label {
+      text-align: left !important;
+      font-size: 1.4rem !important;
+      color: #b74b4b !important;
+    }
+
+    .total-sks-label::before {
+      content: '' !important;
+      display: none !important;
+    }
+  }
+}
